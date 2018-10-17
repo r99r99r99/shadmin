@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:oxm="http://www.springframework.org/schema/oxm"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+				http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-3.0.xsd">
+				
+    
+    
+    
+	<bean id="loadUserInterceptor" class="com.sdocean.interceptor.LoadUserInterceptor"/>
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+		<property name="defaultHandler">
+			<bean class="com.sdocean.frame.web.DefaultController" />
+		</property>
+		<property name="interceptors">  
+            <list>  
+                <ref bean="loadUserInterceptor"/>  
+            </list>  
+        </property>
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                    <property name="supportedMediaTypes">
+                        <list>
+                            <value>text/plain;charset=UTF-8</value>
+                        </list>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:prefix="/WEB-INF/page/" p:suffix=".jsp" />
+
+	<context:component-scan base-package="com.sdocean.*" />
+
+	<!-- <bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+		设置上传文件的最大尺寸为5MB,下面的value以B为单位
+		<property name="maxUploadSize" value="10485760" />
+	</bean> -->
+
+	<!-- <bean id="exceptionResolver"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="defaultErrorView">
+			<value>exception/exception</value>
+		</property>
+		<property name="exceptionMappings">
+			<props>
+			</props>
+		</property>
+	</bean> -->
+
+
+</beans>

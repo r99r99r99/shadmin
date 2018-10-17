@@ -1,0 +1,5 @@
+1,tomcat中配置了乱码问题,在server.xml中第71行,加入URIEncoding="UTF-8"
+2,java jdk运用的是32位,版本是1.8.0.73
+3,tomcat制定开机自启动
+4,设定mysql数据库超时链接时间
+5,制定数据库每天备份

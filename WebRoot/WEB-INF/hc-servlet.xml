@@ -39,7 +39,7 @@
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		p:prefix="/WEB-INF/page/" p:suffix=".jsp" />
+		p:prefix="/shenhai/page/" p:suffix=".jsp" />
 
 	<context:component-scan base-package="com.sdocean.*" />
 
